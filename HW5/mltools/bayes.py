@@ -98,7 +98,7 @@ class gaussClassify(classifier):
                 self.covars[i] = X0.T.dot(wX0) + np.diag(reg + 0 * self.means[i])
 
         if equal:                                               # force covariances to be equal (take weighted average)
-            Cov = sum( [self.probs[i]*self.covars[i] for i in range(len(self.probs))] )
+            Cov = sum( self.probs[i]*self.covars[i] for i in range(len(self.probs)))
             for i,c in enumerate(self.classes):
               self.covars[i] = Cov
 

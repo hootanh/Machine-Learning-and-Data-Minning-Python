@@ -348,7 +348,7 @@ class treeClassify(treeBase,classifier):
 ################################################################################
 ################################################################################
 
-def plotTree2D(tree,bbox=None,styles=['k-'],colors=None,alpha=.3):
+def plotTree2D(tree,bbox=None,styles=None,colors=None,alpha=.3):
     '''Plot a decision tree on two features.
        Args:
          bbox = [xmin,xmax,ymin,ymax] : list bounds of full plot domain
@@ -356,6 +356,7 @@ def plotTree2D(tree,bbox=None,styles=['k-'],colors=None,alpha=.3):
          colors : list of colors for leaf regions; ['none']=skip, None=automatic
          alpha  : opacity for leaf color regions; default 0.3
     '''
+    styles = ['k-'] if styles is None else styles
     import matplotlib.pyplot as plt
     if isinstance(styles,str): styles=[styles];
     if bbox is None: bbox = list(plt.gca().axis());

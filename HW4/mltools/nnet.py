@@ -218,9 +218,8 @@ class nnetClassify(classifier):
         sig : function object F(z) returns activation function & its derivative at z (as a tuple)
         sig0: activation function object F(z) for final layer of the nnet
         """
-        method = method.lower()
 
-        if method == 'logistic':
+        if (method := method.lower()) == 'logistic':
             self.sig = lambda z: twod(1 / (1 + np.exp(-z)))
             self.d_sig = lambda z: twod(np.multiply(self.sig(z), (1 - self.sig(z))))
             self.sig_0 = self.sig
@@ -262,9 +261,8 @@ class nnetClassify(classifier):
           sizes = [Ninput, N1, N2, ... , Noutput], where Ninput = # of input features, and Nouput = # classes
           init = {'zeros', 'random'} : initialize to all zeros or small random values (breaks symmetry)
         """
-        init = init.lower()
 
-        if init == 'none':
+        if (init := init.lower()) == 'none':
             pass
         elif init == 'zeros':
             self.wts = [np.zeros((sizes[i + 1],sizes[i] + 1)) for i in range(len(sizes) - 1)]
@@ -462,9 +460,8 @@ class nnetRegress(regressor):
           sig0: activation function object F(z) for final layer of the nnet
         """
         raise NotImplementedError  # unfinished / tested
-        method = method.lower()
 
-        if method == 'logistic':
+        if (method := method.lower()) == 'logistic':
             self.sig = lambda z: twod(1 / (1 + np.exp(-z)))
             self.d_sig = lambda z: twod(np.multiply(self.sig(z), (1 - self.sig(z))))
             self.sig_0 = self.sig
@@ -503,9 +500,8 @@ class nnetRegress(regressor):
           sizes (list of int): [Nin, N1, N2, ... , Nout], where Nin = # of input features, and Nou = # classes
           init (str):  {'zeros', 'random'} initialize to all zeros or small random values (breaks symmetry)
         """
-        init = init.lower()
 
-        if init == 'none':
+        if (init := init.lower()) == 'none':
             pass
         elif init == 'zeros':
             self.wts = arr([np.zeros((sizes[i + 1],sizes[i] + 1)) for i in range(len(sizes) - 1)], dtype=object)
